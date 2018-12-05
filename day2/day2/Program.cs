@@ -63,7 +63,33 @@ namespace day2
         {
             string flag = "";
 
-            return flag;
+            foreach(string boxID in boxIDS)
+            {
+                foreach(string boxID2 in boxIDS)
+                {
+                    int count = 0;
+                    if (boxID2.Length == boxID.Length)
+                    {
+                        for (int i = 0; i < boxID2.Length; i++)
+                        {
+                            if ((boxID[i] != boxID2[i]))
+                            {
+                                count++;
+                            }
+                        }
+                        if (count > 1)
+                        {
+                            count = 0;
+                        }
+                        if (count == 1)
+                        {
+                            flag = boxID + " | " + boxID2;
+                            return flag;
+                        }
+                    }
+                }
+            }
+            return "not found";
         }
 
     }
