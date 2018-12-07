@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Day3
 {
@@ -17,7 +18,7 @@ namespace Day3
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Day 3 - part one flag is: "+ Part1());
+            Console.WriteLine("Day 3 - part one flag is: " + Part1());
             Console.WriteLine("Day 3 - part two flag is: " + Part2());
             Console.ReadLine();
         }
@@ -25,16 +26,16 @@ namespace Day3
         static int Part1()
         {
             int flag = 0;
-            
+
 
 
             // make input not retarded
-            
-            for(int i = 0; i < input.Count; i++)
+
+            for (int i = 0; i < input.Count; i++)
             {
                 string inp = input[i];
                 string temp = "";
-                if(i < 9)
+                if (i < 9)
                 {
                     temp = inp.Substring(5);
                 }
@@ -75,20 +76,20 @@ namespace Day3
                 int w = sizes[0, i];
                 int h = sizes[1, i];
 
-                for(int i2 = 0; i2 < w; i2++)
+                for (int i2 = 0; i2 < w; i2++)
                 {
                     for (int i3 = 0; i3 < h; i3++)
                     {
                         grid[x + i2, y + i3] += 1;
                     }
                 }
-                
+
 
             }
 
             foreach (int intToCheck in grid)
             {
-                if (intToCheck >1)
+                if (intToCheck > 1)
                 {
                     flag++;
                 }
@@ -112,20 +113,18 @@ namespace Day3
                 {
                     for (int i3 = 0; i3 < h; i3++)
                     {
-                        
-                        if (grid[x + i2, y + i3] == 1)
-                        {
-                            gridIsSeparate = true;
-                        } else
+
+                        if (grid[x + i2, y + i3] > 1)
                         {
                             gridIsSeparate = false;
                         }
-                        
+
                     }
                 }
                 if (gridIsSeparate)
                 {
-                    flag = i;
+                    flag = i + 1;
+                    Console.WriteLine(flag);
                 }
             }
 
